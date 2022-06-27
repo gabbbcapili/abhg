@@ -51,7 +51,7 @@
 
   </div>
   <div class="col-xl-4 col-md-4 col-sm-12">
-      <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(110)->generate($card->url)) !!}" download="{{ $card->url }}_qr.jpg"><img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(110)->generate($card->url)) !!}" download="{{ $card->url }}_qr.jpg">
+      <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(110)->generate($card->route())) !!}" download="{{ $card->url }}_qr.jpg"><img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(110)->generate($card->route())) !!}" download="{{ $card->url }}_qr.jpg">
       <h5>Download QR</a>
   </div>
 
