@@ -1,4 +1,4 @@
 deployment:
  tasks:
- - export DEPLOYPATH=/home/aquiware/public_html/abhg/
+ - export DEPLOYPATH=/home/aquiware/public_html/abhg
  - /bin/cp -r * $DEPLOYPATH
