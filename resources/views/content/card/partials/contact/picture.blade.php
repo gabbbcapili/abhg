@@ -14,12 +14,13 @@
   <div class="mb-1 col-md-6">
     <label class="form-label" for="modern-address">Profile Picture</label>
     <input type="file" name="profile_photo_path" class="form-control mb-2"/>
-    <img src="{{ $contact->profile->fileUrl() }}" class="img-fluid">
+    <img src="{{ $contact->profile ? $contact->profile->fileUrl() : '' }}" class="img-fluid">
   </div>
   <div class="mb-1 col-md-6">
     <label class="form-label" for="modern-landmark">Logo</label>
     <input type="file" name="logo_photo_path" class="form-control mb-2"/>
-    <img src="{{ $contact->logo->fileUrl() }}" class="img-fluid">
+    <img src="{{ $contact->logo ? $contact->logo->fileUrl() : '' }}" class="img-fluid">
+
   </div>
 </div>
 <div class="row">
