@@ -11,7 +11,7 @@ use App\Http\Controllers\ContactController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('index')->middleware('auth');
-Route::get('/card/{card:name}/{page_url}', [CardController::class, 'show'])->name('card.show');
+Route::get('/customcard/{card:name}/{page_url}', [CardController::class, 'show'])->name('card.show');
 
 
 Route::group(['middleware' => ['auth']], function()
