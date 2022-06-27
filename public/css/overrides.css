@@ -1,0 +1,19 @@
+.dark-layout .form-control[type=file]::-webkit-file-upload-button {
+  background-color: #283046;
+}
+
+.dark-layout .form-control[type=file]::file-selector-button {
+  background-color: #283046;
+}
+
+.demo-inline-spacing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.demo-inline-spacing > * {
+  margin-right: 1.5rem;
+  margin-top: 1.5rem;
+}

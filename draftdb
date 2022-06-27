@@ -1,0 +1,95 @@
+card
+    name (domain name)
+    footer_text
+    shared_text
+    show_footer_links
+    show_follow_me
+
+
+contact
+    card_id
+    title
+    first_name
+    last_name
+    job_title
+    business
+    address_1
+    address_2
+    city
+    state
+    zip
+    country
+    skype
+    website
+    email
+    allow
+    allow_follow
+    allow_link
+
+phone_number
+    card_id
+    number
+    type
+    ext
+    call_me
+    text_me
+
+social_links
+    card_id
+    facebook
+    twitter
+    googleplus
+    pinterest
+    instagram
+    linkedin
+    youtube
+    yelp
+    myspace
+    foursquare
+    tumblr
+    spotify
+    soundcloud
+    bandcamp
+    vilmeo
+    snapchat
+    reddit
+    twitch
+    skype
+    whatsapp
+    wechat
+    zoom
+    joinme
+    viber
+    googlehangout
+    voxer
+
+
+important_links
+    card_id
+    label
+    link
+    type (porfolio, book_now, purchase_book, shop, support, other)
+
+theme
+    bg_color
+    bg_image
+    bg_style (repeat, repeat-y, repeat-x, no-repeat)
+    text_color
+    bgg_start
+    bgg_end
+    bgg_style
+    btn_color
+    btn_border_color
+    btn_text_color
+    menu_bg_color
+    menu_text_color
+    link_color
+
+media
+    file
+    name
+    link - nullable
+    caption - nullable
+
+
+

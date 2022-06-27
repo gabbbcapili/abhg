@@ -1,0 +1,94 @@
+.phone-preview
+ {
+    position: absolute;
+    /*top: 115px;*/
+    background: #343a44;
+    border: 7px solid #000000;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 420px;
+    height: 711px;
+    z-index: 10;
+ }
+
+ @media (max-width: 768px) {
+    .phone-preview {
+        background: #ffffff;
+        border: 7px solid #ffffff;
+    }
+     .overflowPhone{
+        height: 900px !important;
+    }
+ }
+ .phone-andorid-top{
+       background: #3e4552;
+       width: 200px;
+       position: absolute;
+       left: 0;
+       right: 0;
+       margin: auto;
+       top: 0;
+       padding: 10px 10px 8px;
+       text-align: center;
+       z-index: 999;
+       border-radius: 20px;
+ }
+
+.phone-andorid-bullat,
+.phone-andorid-camera,
+.phone-andorid-voice {
+    display: inline-block;
+    background: #000000;
+    vertical-align: middle;
+}
+.phone-andorid-bullat {
+    width: 8px;
+    height: 8px;
+    border-radius: 20px;
+}
+
+.phone-andorid-voice {
+    width: 47px;
+    height: 5px;
+    border-radius: 5px;
+    margin: 0 15px;
+}
+
+.phone-andorid-camera {
+    width: 13px;
+    height: 13px;
+    border-radius: 20px;
+}
+
+.phone-andorid-left-button1 {
+    width: 3px;
+    position: absolute;
+    left: -10px;
+    height: 30px;
+    top: 100px;
+    background: #000000;
+}
+.phone-andorid-left-button2,
+.phone-andorid-left-button3 {
+    left: -10px;
+    height: 45px;
+    width: 3px;
+    position: absolute;
+    background: #000000;
+}
+.phone-andorid-left-button2 {
+    top: 140px;
+}
+.phone-andorid-left-button3 {
+    top: 200px;
+}
+.phone-andorid-right-button {
+    width: 3px;
+    position: absolute;
+    right: -10px;
+    height: 95px;
+    top: 130px;
+    background: #000000;
+}
+
+

@@ -1,0 +1,12 @@
+.phoneDemo
+ {
+    position: absolute;
+    top: 115px;
+    background: #343a44;
+    border: 7px solid #292f39;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 420px;
+    height: 711px;
+    z-index: 10;
+ }
