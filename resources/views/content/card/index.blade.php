@@ -24,6 +24,23 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/trumbowyg/trumbowyg.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
+  <style type="text/css">
+    .swatch{
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background: #ddd;
+      border: thin solid #000;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .swatch.active {
+      border: 8px solid #949494!important;
+    }
+
+  </style>
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/ui/ui.css')) }}">
 @endsection
 
 @section('content')
@@ -85,9 +102,8 @@
                     <div class="phone-andorid-left-button3 d-none d-md-block"></div>
                     <div class="phone-andorid-right-button d-none d-md-block"></div>
 
-                    <div class="d-md-flex" style="padding-top:44px;">
-                      <div class="overflow-auto  ms-1 p-1 bg-light" style="width: 380px; height: 630px;" id="phonePreview">
-                      </div>
+                    <div class="d-md-flex" style="padding-top:44px;" id="phonePreview">
+
                     </div>
                   </div>
                 <!-- </div> -->
@@ -172,6 +188,38 @@
 
 
   }
+  function loadSwipers(){
+    var options = {
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+              delay: 2500,
+              disableOnInteraction: false
+            },
+            observer: true,
+            observeParents: true,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev'
+            }
+          };
+
+      $('#sortable-blocks .swiper-container').each(function(index, element){
+        $(this).addClass('sw'+index);
+        new Swiper('.sw'+index, options);
+    });
+
+     $('#phonePreview .swiper-container').each(function(index, element){
+        $(this).addClass('s'+index);
+        new Swiper('.s'+index, options);
+    });
+
+
+  }
   function loadPhonePreview($page_id){
     var urlPhoneContent = '{{ route("page.phone", ":page") }}';
     urlPhoneContent = urlPhoneContent.replace(':page', $page_id);
@@ -181,27 +229,45 @@
           success:function(result)
           {
             $("#phonePreview").html(result);
-            var swiper = new Swiper('.swiper-autoplay', {
-              spaceBetween: 30,
-              centeredSlides: true,
-              autoplay: {
-                delay: 2500,
-                disableOnInteraction: false
-              },
-              pagination: {
-                el: '.swiper-pagination',
-                clickable: true
-              },
-              navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
-              }
-            });
+            loadSwipers();
             replaceIcons();
           }
       });
   }
   $( document ).ready(function() {
+
+    var designSwiper = new Swiper('.swiper-multi-row', {
+      slidesPerView: 3,
+      slidesPerColumn: 2,
+      spaceBetween: 30,
+      observer: true,
+      observeParents: true,
+      slidesPerColumnFill: 'row',
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+    });
+    $('.select2').select2();
+
+    $(document).on('change', '#selectDesign', function(){
+      var urlGetGroup = '{{ route("design.getGroup", ":group") }}';
+        urlGetGroup = urlGetGroup.replace(':group', $(this).val());
+      $.ajax({
+          url: urlGetGroup,
+          method: "GET",
+          success:function(result)
+          {
+            $('#design_id').html(result);
+            // $('[name="design_id"]').select2();
+            @if($card->design_id)
+              $('.swatch-{{$card->design_id}}').addClass('active');
+            @endif
+          }
+        });
+    });
+    $('#selectDesign').trigger('change');
+
     $('.trumbowyg').trumbowyg();
     loadPages();
 
@@ -262,6 +328,33 @@
     $(document).on('click', '.btnCreateBlock', function(){
       $('.btnCreateBlock').removeClass('active');
       $(this).addClass('active');
+    });
+
+
+
+    $(document).on('click', '.swatch', function(){
+      $('.swatch').removeClass('active');
+      $(this).addClass('active');
+      $.ajax({
+          url: "{{ route('card.updateDesign', $card) }}",
+          method: "POST",
+          data: {
+            design_id : $(this).data('id')
+          },
+          success:function(result)
+          {
+            Swal.fire({
+                icon: 'success',
+                title: result.msg,
+                showConfirmButton: false,
+                timer: 1500,
+                showClass: {
+                  popup: 'animate__animated animate__fadeIn'
+                },
+              });
+            loadPhonePreview($activePage);
+          }
+        });
     });
 
 

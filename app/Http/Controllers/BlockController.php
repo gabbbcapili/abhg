@@ -45,8 +45,7 @@ class BlockController extends Controller
                 ]);
             }else if($data['type'] == 'preformattedBtn'){
                 $data['content'] = json_encode([
-                    'html' => Block::preformattedBtn($data['btnType']),
-                    'btntype' => $data['btnType'],
+                    'btnType' => $data['btnType'],
                 ]);
             }else if($data['type'] == 'paypal'){
                 $data['content'] = json_encode([
@@ -154,6 +153,37 @@ class BlockController extends Controller
                     'image' => $data['image'],
                     'subText' => $data['subText'],
                 ]);
+            }else if($data['type'] == 'nameinfo'){
+                $data['content'] = json_encode([
+                    'show_title' => $request->has('show_title') ? true : false,
+                    'show_first_name' => $request->has('show_first_name') ? true : false,
+                    'show_last_name' => $request->has('show_last_name') ? true : false,
+                    'show_job_title' => $request->has('show_job_title') ? true : false,
+                    'show_business_name' => $request->has('show_business_name') ? true : false,
+                ]);
+                $request->user()->update($request->only(['first_name', 'last_name']));
+                $request->user()->contact->update($request->only(['title', 'job_title', 'business_name']));
+            }else if($data['type'] == 'address'){
+                $data['content'] = json_encode([
+                    'show_address' => $request->has('show_address') ? true : false,
+                    'show_website' => $request->has('show_website') ? true : false,
+                    'show_phone' => $request->has('show_phone') ? $request->only(['show_phone']) : [],
+                ]);
+                $request->user()->contact->update($request->only(['address_1', 'address_2', 'state', 'city', 'zip', 'website']));
+            }else if($data['type'] == 'profilephoto'){
+                $data['content'] = json_encode([
+                    'showimage' => $data['showimage'],
+                ]);
+            }else if($data['type'] == 'socialmedia'){
+                $data['content'] = json_encode([
+                    'show_social' => $request->has('show_social') ? $request->only(['show_social']) : [],
+                ]);
+                $request->user()->contact->update($request->all());
+            }else if($data['type'] == 'reachmeonline'){
+                $data['content'] = json_encode([
+                    'show_reach' => $request->has('show_reach') ? $request->only(['show_reach']) : [],
+                ]);
+                $request->user()->contact->update($request->all());
             }
             $page->blocks()->create($data);
             DB::commit();

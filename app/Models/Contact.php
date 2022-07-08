@@ -20,4 +20,8 @@ class Contact extends Model
     public function logo(){
         return $this->hasOne(Media::class, 'id', 'logo_photo_path');
     }
+
+    public function getNoimageAttribute(){
+        return asset('images/media/noimage.png');
+    }
 }

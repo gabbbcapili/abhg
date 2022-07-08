@@ -117,8 +117,8 @@
             <i class="me-50" data-feather="key"></i> API Tokens
           </a>
         @endif
-        <a class="dropdown-item" href="#">
-          <i class="me-50" data-feather="settings"></i> Settings
+        <a class="dropdown-item" href="{{ route('subscription.index') }}">
+          <i class="me-50" data-feather="tag"></i> Subscription
         </a>
 
         @if (Auth::User() && Laravel\Jetstream\Jetstream::hasTeamFeatures())

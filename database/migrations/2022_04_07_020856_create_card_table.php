@@ -19,6 +19,7 @@ class CreateCardTable extends Migration
             $table->string('name')->unique();
             $table->text('footer_text')->nullable();
             $table->text('shared_text')->nullable();
+            $table->text('design_id')->nullable();
             $table->boolean('show_footer_links')->default(1);
             $table->boolean('show_follow_me')->default(1);
             $table->timestamps();

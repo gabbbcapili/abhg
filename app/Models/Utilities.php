@@ -12,6 +12,7 @@ class Utilities extends Model
     public static function getFeatherIcons(){
         return [
             'Edit' => 'edit-2',
+            'Show' => 'eye',
             'Delete' => 'trash',
             'Approve' => 'check',
             'Default' => 'thumbs-up',

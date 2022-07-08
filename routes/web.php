@@ -8,18 +8,24 @@ use App\Http\Controllers\BlockController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DesignController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\SubscriptionController;
 
 
-Route::get('/', [HomeController::class, 'index'])->name('index')->middleware('auth');
+Route::get('/', [HomeController::class, 'index'])->name('index')->middleware('auth')->name('home');
 Route::get('/customcard/{card:name}/{page_url}', [CardController::class, 'show'])->name('card.show');
+
+Route::get('/subscription/notfound', [SubscriptionController::class, 'notfound'])->name('subscription.notfound');
 
 
 Route::group(['middleware' => ['auth']], function()
 {
-    Route::resource('/card', CardController::class)->except(['show']);
+    Route::resource('/card', CardController::class)->except(['show'])->middleware('subscribed');
     Route::resource('/contact', ContactController::class);
 
     Route::get('/card/downloadqr/{card}', [CardController::class, 'downloadqr'])->name('card.downloadqr');
+    Route::POST('/card/updateDesign/{card}', [CardController::class, 'updateDesign'])->name('card.updateDesign');
 
 
 
@@ -46,6 +52,15 @@ Route::group(['middleware' => ['auth']], function()
     Route::get('/media/qcreate/{type}', [MediaController::class, 'qcreate'])->name('media.qcreate');
     Route::post('/media/upload/{type}', [MediaController::class, 'upload'])->name('media.upload');
     Route::resource('/media', MediaController::class)->parameters(['media' => 'media']);
+
+    Route::get('/design/getGroup/{group}', [DesignController::class, 'getGroup'])->name('design.getGroup');
+
+    Route::get('/plan/checkout/{plan}', [PlanController::class, 'checkout'])->name('plan.checkout');
+
+    Route::post('/plan/store/{plan}', [PlanController::class, 'store'])->name('plan.store');
+    Route::get('/plan/invoice/{subscription}', [PlanController::class, 'invoice'])->name('plan.invoice');
+
+    Route::resource('/subscription', SubscriptionController::class);
 });
 
 

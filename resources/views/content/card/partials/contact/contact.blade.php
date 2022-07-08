@@ -27,7 +27,7 @@
 <div class="row mb-1">
   <div class="mb-1 col-md-6">
     <label class="form-label" for="job_title">Job Title</label>
-    <input type="text" id="job_title" name="job_title" class="form-control" placeholder="Manager"  value="{{ $contact->title }}"/>
+    <input type="text" id="job_title" name="job_title" class="form-control" placeholder="Manager"  value="{{ $contact->job_title }}"/>
   </div>
   <div class="mb-1 col-md-6">
     <label class="form-label" for="business_name">Business Name</label>

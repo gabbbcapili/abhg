@@ -7,11 +7,11 @@
                         <h5>Add & Edit Your Pages</h5>
                     </div>
                     <div class="card-body">
-                        <button class="btn btn-primary modal_button" data-action="{{ route('page.create', $card) }}">Add Page</button> <button class="btn btn-primary">Customize Theme</button>
+                        <button class="btn btn-primary modal_button" data-action="{{ route('page.create', $card) }}">Add Page</button>
+                        <!-- <button class="btn btn-primary">Customize Theme</button> -->
                         <div class="row mt-1">
                             <div class="col-md-12 col-sm-12" id="">
-                              <div class="list-group"role="tablist"  id="sortable-pages" >
-
+                              <div class="list-group"role="tablist"  id="sortable-pages">
                               </div>
                             </div>
                         </div>

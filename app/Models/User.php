@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Media;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -96,7 +97,20 @@ class User extends Authenticatable
         return $this->hasMany(PhoneNumber::class, 'user_id');
     }
 
+    public function subscription(){
+        return $this->hasMany(Subscription::class, 'user_id');
+    }
+
     public function links(){
         return $this->hasMany(Link::class, 'user_id');
+    }
+
+    public function hasActiveSubscription(){
+        $activeCount = $this->subscription()->whereDate('expire_at', '>=', Carbon::today()->toDateString())->count();
+        if($activeCount > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

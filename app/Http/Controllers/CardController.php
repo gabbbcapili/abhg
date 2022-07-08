@@ -11,6 +11,7 @@ use Validator;
 use Carbon\Carbon;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\Block;
+use App\Models\Design;
 
 class CardController extends Controller
 {
@@ -28,6 +29,7 @@ class CardController extends Controller
         $noFooter = false;
         $card = $request->user()->card;
         $qr = QrCode::format('png')->generate('http://www.simplesoftware.io');
+        // $design = Design::all();
         return view('content.card.index', compact('breadcrumbs', 'noFooter', 'card', 'qr'));
     }
 
@@ -132,5 +134,30 @@ class CardController extends Controller
 
     public function addBlock(){
 
+    }
+
+    public function updateDesign(Card $card, Request $request){
+        $validator = Validator::make($request->all(), [
+            'design_id' => ['required', 'exists:design,id'],
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()]);
+        }
+        try {
+            DB::beginTransaction();
+            $data = $request->only(['design_id']);
+            $card->update($data);
+            DB::commit();
+            $output = ['success' => 1,
+                        'msg' => 'Card updated successfully!',
+                    ];
+        } catch (\Exception $e) {
+            \Log::emergency("File:" . $e->getFile(). " Line:" . $e->getLine(). " Message:" . $e->getMessage());
+            $output = ['success' => 0,
+                        'msg' => env('APP_DEBUG') ? $e->getMessage() : 'Sorry something went wrong, please try again later.'
+                    ];
+             DB::rollBack();
+        }
+        return response()->json($output);
     }
 }

@@ -62,7 +62,7 @@
 </div>
 
 
-<div class="step" data-target="#accordion-publish" role="tab" id="publish-step">
+<!-- <div class="step" data-target="#accordion-publish" role="tab" id="publish-step">
   <button type="button" class="step-trigger">
     <span class="bs-stepper-box">
       <i data-feather="paperclip" class="font-medium-3"></i>
@@ -71,7 +71,7 @@
       <span class="bs-stepper-title">Publish History</span>
     </span>
   </button>
-</div>
+</div> -->
 <div class="line">
 </div>
 <div class="step" data-target="#accordion-contact-form" role="tab" id="contact-form-step">

@@ -178,7 +178,7 @@ class ContactController extends Controller
             if($request->hasFile('profile_photo_path')){
               $photo = $data['profile_photo_path'];
               $extension = $photo->getClientOriginalExtension();
-              $new_name = 'logo_photo_path_'  . sha1(time()) . '.' . $extension;
+              $new_name = 'profile_photo_path_'  . sha1(time()) . '.' . $extension;
               $photo->move(public_path('user/'. $request->user()->id .'') , $new_name);
               $media = $request->user()->medias()->create([
                 'type' => $extension,

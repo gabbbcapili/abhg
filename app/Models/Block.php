@@ -151,6 +151,49 @@ class Block extends Model
                 'text' => ['required'],
             ];
         }
+        else if($type == 'nameinfo'){
+            return [
+                'website' => ['nullable', 'url'],
+            ];
+        }else if($type == 'address'){
+            return [
+            ];
+        }else if($type == 'profilephoto'){
+            return [
+            ];
+        }else if($type == 'socialmedia'){
+            return [
+                'facebook' => ['nullable', 'url'],
+                'twitter' => ['nullable', 'url'],
+                'googleplus' => ['nullable', 'url'],
+                'pinterest' => ['nullable', 'url'],
+                'instagram' => ['nullable', 'url'],
+                'linkedin' => ['nullable', 'url'],
+                'youtube' => ['nullable', 'url'],
+                'yelp' => ['nullable', 'url'],
+                'myspace' => ['nullable', 'url'],
+                'foursquare' => ['nullable', 'url'],
+                'tumblr' => ['nullable', 'url'],
+                'spotify' => ['nullable', 'url'],
+                'soundcloud' => ['nullable', 'url'],
+                'bandcamp' => ['nullable', 'url'],
+                'vilmeo' => ['nullable', 'url'],
+                'snapchat' => ['nullable', 'url'],
+                'reddit' => ['nullable', 'url'],
+                'twitch' => ['nullable', 'url'],
+            ];
+        }else if($type == 'reachmeonline'){
+            return [
+                'skype' => ['nullable', 'url'],
+                'whatsapp' => ['nullable', 'url'],
+                'wechat' => ['nullable', 'url'],
+                'zoom' => ['nullable', 'url'],
+                'joinme' => ['nullable', 'url'],
+                'viber' => ['nullable', 'url'],
+                'googlehangout' => ['nullable', 'url'],
+                'voxer' => ['nullable', 'url'],
+            ];
+        }
         else{
             return [
                 'type' => ['required', Rule::in(static::$types)]
@@ -158,77 +201,80 @@ class Block extends Model
         }
     }
 
-    public static function preformattedBtn($btnType){
+    public function preformattedBtn($btnType, $design_id = null){
         $html = '';
+        // $phone = $this->page->card->user->phone ? $this->page->card->user->phone->first() : null;
+
+
         if($btnType == 1){
             $html = '<div class="row mb-2">
                         <div class="d-grid col-6">
-                          <a class="btn btn-outline-secondary">Call Me</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'"><span data-feather="phone-call"></span> Call Me</a>
                         </div>
                         <div class="d-grid col-6">
-                          <a class="btn btn-outline-secondary">Email Me</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="mail"></span> Email Me</a>
                         </div>
                       </div>';
         }else if($btnType == 2){
             $html = '<div class="row mb-2">
                         <div class="d-grid col-6">
-                          <a class="btn btn-outline-secondary">Share by Text</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'"><span data-feather="smartphone"></span> Share by Text</a>
                         </div>
                         <div class="d-grid col-6">
-                          <a class="btn btn-outline-secondary">Share by Email</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="mail"></span> Share by Email</a>
                         </div>
                       </div>
                       <div class="row mb-2">
                         <div class="d-grid col-12">
-                          <a class="btn btn-outline-secondary">Download Contact</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="download"></span> Download Contact</a>
                         </div>
                       </div>';
         }else if($btnType == 3){
             $html = '<div class="row mb-2">
                         <div class="d-grid col-4">
-                          <a class="btn btn-outline-secondary">Call Me</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="phone-call"></span> Call Me</a>
                         </div>
                         <div class="d-grid col-4">
-                          <a class="btn btn-outline-secondary">Email Me</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="mail"></span> Email Me</a>
                         </div>
                         <div class="d-grid col-4">
-                          <a class="btn btn-outline-secondary">Text Me</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="smartphone"></span> Text Me</a>
                         </div>
                       </div>';
         }else if($btnType == 4){
             $html = '<div class="row mb-2">
                         <div class="d-grid col-12">
-                          <a class="btn btn-outline-secondary">Phone</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="phone-call"></span>Phone</a>
                         </div>
                       </div>';
         }else if($btnType == 5){
             $html = '<div class="row mb-2">
                         <div class="d-grid col-12">
-                          <a class="btn btn-outline-secondary">Email Me</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="mail"></span> Email Me</a>
                         </div>
                       </div>';
         }else if($btnType == 6){
             $html = '<div class="row mb-2">
                         <div class="d-grid col-12">
-                          <a class="btn btn-outline-secondary">Text Me</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="smartphone"></span> Text Me</a>
                         </div>
                       </div>';
         }else if($btnType == 7){
             $html = '<div class="row mb-2">
                         <div class="d-grid col-12">
-                          <a class="btn btn-outline-secondary">Save to my Home Screen</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="monitor"></span> Save to my Home Screen</a>
                         </div>
                       </div>';
         }else if($btnType == 8){
             $html = '<div class="row mb-2">
                         <div class="d-grid col-12">
-                          <a class="btn btn-outline-secondary">Follow Me</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="users"></span> Follow Me</a>
                         </div>
                       </div>';
         }else if($btnType == 9){
             $html = '<div class="row mb-2">
                         <div class="d-grid col-12">
-                          <a class="btn btn-outline-secondary">Download Contact</a>
+                          <a class="btn btn-outline-secondary button-'. $design_id .'""><span data-feather="download"></span> Download Contact</a>
                         </div>
                       </div>';
         }

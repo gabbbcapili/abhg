@@ -13,7 +13,7 @@
                   </div>
                 </div>
           </div>
-            @include('content.card.blockMaster', ['block' => $block])
+            @include('content.card.blockMaster', ['block' => $block, 'design_id' => null])
         </div>
         <div class="d-grid col-12 mb-1">
             <button class="btn btn-block btn-primary modal_button btnCreateBlock" data-action="{{ route('block.create', $page->id) }}" data-sort="{{ $block->sort + 1 }}"><i data-feather="plus-circle"></i></button>

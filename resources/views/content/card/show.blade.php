@@ -1,7 +1,7 @@
 @inject('request', 'Illuminate\Http\Request')
 @extends('layouts/fullLayoutMaster')
 
-@section('title', $card->url)
+@section('title', $card->user->fullname . ' ' . $card->url)
 
 @section('vendor-style')
   <!-- vendor css files -->
@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/trumbowyg/trumbowyg.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/ui/ui.css')) }}">
 @endsection
 
 @section('content')
@@ -36,17 +37,17 @@
     <div class="phone-andorid-right-button d-none d-md-block"></div>
 
     <div class="d-md-flex" style="padding-top:44px;">
-      <div class="overflow-auto overflowPhone  ms-1 p-1 bg-light" style="width: 380px; height: 630px;" id="phonePreview">
-        <nav class="navbar navbar-light">
+      <div class="overflow-auto overflowPhone  ms-1 p-1 backgroundColor-{{ $page->card->design_id }}" style="width: 380px; height: 630px;" id="phonePreview">
+        <nav class="navbar menuBackgroundColor-{{ $page->card->design_id }} mb-1">
             <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><h6>Menu
-              <span class="navbar-toggler-icon"></span></h6>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><h6 class="menuTextColor-{{ $page->card->design_id }}">Menu
+              <span data-feather="align-justify"></span></h6>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 @foreach($card->pages as $pageNav)
-                    <li class="nav-item">
-                      <a class="nav-link {{ $page->id == $pageNav->id ? 'active' : '' }}" href="{{ route('card.show', ['card' => $card, 'page_url' => $pageNav->url]) }}">{{ $pageNav->name }}</a>
+                    <li class="nav-item menuBackgroundColor-{{ $page->card->design_id }}">
+                      <a class="nav-link ps-1 pt-1 {{ $page->id == $pageNav->id ? 'active' : '' }} menuTextColor-{{ $page->card->design_id }}" style="border-bottom: thin solid #fff;" href="{{ route('card.show', ['card' => $card, 'page_url' => $pageNav->url]) }}">{{ $pageNav->name }}</a>
                     </li>
                 @endforeach
               </ul>
@@ -54,7 +55,7 @@
         </nav>
         @foreach($page->blocks()->orderBy('sort')->get() as $block)
 
-        @include('content.card.blockMaster', ['block' => $block])
+        @include('content.card.blockMaster', ['block' => $block, 'design_id' => $card->design_id])
 
         @endforeach
       </div>

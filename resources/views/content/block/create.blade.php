@@ -125,6 +125,51 @@
                   </div>
                 </div>
 
+
+                <div class="accordion accordion-border" id="accordionBorder">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingBorderOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#contactinfo" aria-expanded="false" aria-controls="contactinfo">
+                        <span data-feather="user" class="mx-2"></span>Contact Information
+                      </button>
+                    </h2>
+                    <div id="contactinfo" class="accordion-collapse collapse" aria-labelledby="headingBorderOne" data-bs-parent="#accordionBorder">
+                      <div class="accordion-body">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button modal_button" data-action="{{ route('block.create.type', ['page' => $page, 'type' => 'nameinfo']) }}">
+                            <span data-feather="info" class="mx-2"></span>Name, Title, Business
+                          </button>
+                        </h2>
+                        <h2 class="accordion-header">
+                          <button class="accordion-button modal_button" data-action="{{ route('block.create.type', ['page' => $page, 'type' => 'address']) }}">
+                            <span data-feather="phone" class="mx-2"></span>Phone, Addresess
+                          </button>
+                        </h2>
+                        <h2 class="accordion-header">
+                          <button class="accordion-button modal_button" data-action="{{ route('block.create.type', ['page' => $page, 'type' => 'profilephoto']) }}">
+                            <span data-feather="image" class="mx-2"></span>Profile Photo and Logo
+                          </button>
+                        </h2>
+                        <h2 class="accordion-header">
+                          <button class="accordion-button modal_button" data-action="{{ route('block.create.type', ['page' => $page, 'type' => 'socialmedia']) }}">
+                            <span data-feather="thumbs-up" class="mx-2"></span>Social Media
+                          </button>
+                        </h2>
+                        <h2 class="accordion-header">
+                          <button class="accordion-button modal_button" data-action="{{ route('block.create.type', ['page' => $page, 'type' => 'reachmeonline']) }}">
+                            <span data-feather="inbox" class="mx-2"></span>Reach Me Online
+                          </button>
+                        </h2>
+              <!--           <h2 class="accordion-header">
+                          <button class="accordion-button modal_button" data-action="{{ route('block.create.type', ['page' => $page, 'type' => 'importantlinks']) }}">
+                            <span data-feather="link-2" class="mx-2"></span>Important Links
+                          </button>
+                        </h2> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="accordion accordion-border" id="accordionBorder">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingBorderOne">
